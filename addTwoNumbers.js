@@ -10,21 +10,23 @@
  * @param {ListNode} l2
  * @return {ListNode}
  */
+class ListNode {
+  constructor(val) {
+    this.val = val;
+    this.next = null;
+  }
 
-function ListNode(val) {
-  this.val = val;
-  this.next = null;
+  add(val) {
+    let node = this;
+    while (node.next) {
+      node = node.next;
+    }
+    node.next = new ListNode(val);
+  }
 }
 
-ListNode.prototype.add = (val) => {
-  node = this;
-  while (node.next) {
-    node = node.next;
-  }
-  node.next = new ListNode(val);
-};
 
-var addTwoNumbers = function(l1, l2) {
+const addTwoNumbers = function addTwoNumbers(l1, l2) {
   let factor = 1;
   let node1 = l1;
   let num1 = 0;
@@ -33,16 +35,16 @@ var addTwoNumbers = function(l1, l2) {
     factor *= 10;
     node1 = node1.next;
   }
-  
+
   factor = 1;
   let node2 = l2;
   let num2 = 0;
   while (node2) {
-    num2 += factor * node2.val;    
+    num2 += factor * node2.val;
     factor *= 10;
     node2 = node2.next;
   }
-  
+
   const sum = num1 + num2;
   // const l3 = new ListNode();
   return sum;
