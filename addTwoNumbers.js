@@ -47,13 +47,29 @@ const addTwoNumbers = function addTwoNumbers(l1, l2) {
     node3 = node3.next;
   }
 
-  if (node1) {
-    node3.next = new ListNode(node1.val + carry);
-    carry = 0;
+  while (node1) {
+    let digit = node1.val + carry;
+    if (digit > 9) {
+      digit %= 10;
+      carry = 1;
+    } else {
+      carry = 0;
+    }
+    node3.next = new ListNode(digit);
+    node1 = node1.next;
+    node3 = node3.next;
   }
-  if (node2) {
-    node3.next = new ListNode(node2.val + carry);
-    carry = 0;
+  while (node2) {
+    let digit = node2.val + carry;
+    if (digit > 9) {
+      digit %= 10;
+      carry = 1;
+    } else {
+      carry = 0;
+    }
+    node3.next = new ListNode(digit);
+    node2 = node2.next;
+    node3 = node3.next;
   }
   if (carry) {
     node3.next = new ListNode(1);
@@ -81,3 +97,8 @@ l1.add(6);
 const res3 = addTwoNumbers(l1, l2);
 console.log(res3);
 console.log(res3.next.next);
+
+const l3 = new ListNode(1);
+const l4 = new ListNode(9);
+l4.add(9);
+console.log(addTwoNumbers(l3, l4));
