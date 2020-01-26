@@ -34,7 +34,7 @@ const addTwoNumbers = function addTwoNumbers(l1, l2) {
   let node3 = l3;
   while (node1 || node2 || carry) {
     if (!node1) node1 = { val: 0, next: null };
-    if (!node2) node1 = { val: 0, next: null };
+    if (!node2) node2 = { val: 0, next: null };
     let digit = node1.val + node2.val + carry;
     if (digit > 9) {
       digit %= 10;
@@ -48,34 +48,6 @@ const addTwoNumbers = function addTwoNumbers(l1, l2) {
     node2 = node2.next;
     node3 = node3.next;
   }
-
-  // while (node1) {
-  //   let digit = node1.val + carry;
-  //   if (digit > 9) {
-  //     digit %= 10;
-  //     carry = 1;
-  //   } else {
-  //     carry = 0;
-  //   }
-  //   node3.next = new ListNode(digit);
-  //   node1 = node1.next;
-  //   node3 = node3.next;
-  // }
-  // while (node2) {
-  //   let digit = node2.val + carry;
-  //   if (digit > 9) {
-  //     digit %= 10;
-  //     carry = 1;
-  //   } else {
-  //     carry = 0;
-  //   }
-  //   node3.next = new ListNode(digit);
-  //   node2 = node2.next;
-  //   node3 = node3.next;
-  // }
-  // if (carry) {
-  //   node3.next = new ListNode(1);
-  // }
 
   return l3.next;
 };
