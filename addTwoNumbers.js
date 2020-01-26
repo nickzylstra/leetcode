@@ -27,27 +27,36 @@ class ListNode {
 
 
 const addTwoNumbers = function addTwoNumbers(l1, l2) {
-  let factor = 1;
   let node1 = l1;
-  let num1 = 0;
-  while (node1) {
-    num1 += factor * node1.val;
-    factor *= 10;
-    node1 = node1.next;
-  }
-
-  factor = 1;
   let node2 = l2;
-  let num2 = 0;
-  while (node2) {
-    num2 += factor * node2.val;
-    factor *= 10;
+  let carry = 0;
+  const l3 = new ListNode();
+  let node3 = l3;
+  while (node1 && node2) {
+    let digit = node1.val + node2.val + carry;
+    if (digit > 9) {
+      digit %= 10;
+      carry = 1;
+    } else {
+      carry = 0;
+    }
+    node3.next = new ListNode(digit);
+
+    node1 = node1.next;
     node2 = node2.next;
+    node3 = node3.next;
   }
 
-  const sum = num1 + num2;
-  // const l3 = new ListNode();
-  return sum;
+  if (node1) {
+    node3.val = node1.val;
+    node3.next = node1.next;
+  }
+  if (node2) {
+    node3.val = node2.val;
+    node3.next = node2.next;
+  }
+
+  return l3.next;
 };
 
 
@@ -57,7 +66,8 @@ l1.add(3);
 const l2 = new ListNode(5);
 l2.add(6);
 l2.add(4);
-console.log(addTwoNumbers(l1, l2));
+const res1 = addTwoNumbers(l1, l2);
+console.log(res1);
 
 l2.add(4);
 console.log(addTwoNumbers(l1, l2));
