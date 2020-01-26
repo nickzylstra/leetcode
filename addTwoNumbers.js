@@ -48,12 +48,15 @@ const addTwoNumbers = function addTwoNumbers(l1, l2) {
   }
 
   if (node1) {
-    node3.val = node1.val;
-    node3.next = node1.next;
+    node3.next = new ListNode(node1.val + carry);
+    carry = 0;
   }
   if (node2) {
-    node3.val = node2.val;
-    node3.next = node2.next;
+    node3.next = new ListNode(node2.val + carry);
+    carry = 0;
+  }
+  if (carry) {
+    node3.next = new ListNode(1);
   }
 
   return l3.next;
@@ -70,4 +73,11 @@ const res1 = addTwoNumbers(l1, l2);
 console.log(res1);
 
 l2.add(4);
-console.log(addTwoNumbers(l1, l2));
+const res2 = addTwoNumbers(l1, l2);
+console.log(res2);
+console.log(res2.next.next);
+
+l1.add(6);
+const res3 = addTwoNumbers(l1, l2);
+console.log(res3);
+console.log(res3.next.next);
