@@ -6,6 +6,7 @@
 const convert = function convert(s, numRows) {
   const len = s.length;
   if (len === 0) return '';
+  if (numRows === 1) return s;
   // handle numRows = 0
   // handle numRows > len
   const rowQueues = new Map();
@@ -34,3 +35,4 @@ const convert = function convert(s, numRows) {
 
 console.log(convert('PAYPALISHIRING', 3), '=== PAHNAPLSIIGYIR');
 console.log(convert('PAYPALISHIRING', 4), '=== PINALSIGYAHRPI');
+console.log(convert('AB', 1), '=== AB');
