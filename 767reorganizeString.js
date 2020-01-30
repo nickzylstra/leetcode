@@ -63,6 +63,10 @@ class PQ {
     return this.isEmpty() ? null : this._items.shift();
   }
 
+  peek() {
+    return this.isEmpty() ? null : this._items[0];
+  }
+
   rear() {
     return this.isEmpty() ? null : this._items[this._items.length - 1];
   }
