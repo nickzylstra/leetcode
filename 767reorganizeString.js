@@ -1,6 +1,6 @@
 const moveChar = (str, startIdx, endIdx) => (
   startIdx < endIdx
-    ? str.substring(0, startIdx) + str.substring(startIdx + 1, endIdx) + str.charAt(startIdx) + str.substring(endIdx)
+    ? str.substring(0, startIdx) + str.substring(startIdx + 1, endIdx + 1) + str.charAt(startIdx) + str.substring(endIdx + 1)
     : str.substring(0, endIdx) + str.charAt(startIdx) + str.substring(endIdx + 1, startIdx) + str.substring(startIdx));
 
 const reorgChar = (str, charIdx) => {
@@ -32,7 +32,8 @@ const reorganizeString = function (S) {
     const char = output.charAt(i);
     const nextChar = output.charAt(i + 1);
     if (char === nextChar) {
-      output = reorgChar(output, i);
+      output = reorgChar(output, i + 1);
+      i -= 1;
     }
   }
 
@@ -41,4 +42,4 @@ const reorganizeString = function (S) {
 
 console.log(`"${reorganizeString('aab')}"`, '=== "aba"');
 console.log(`"${reorganizeString('aaab')}"`, '=== ""');
-console.log(`"${reorganizeString('aabaccca')}"`, '=== "cabacacac"');
+console.log(`"${reorganizeString('aabaccca')}"`, '=== "abacacac"');
